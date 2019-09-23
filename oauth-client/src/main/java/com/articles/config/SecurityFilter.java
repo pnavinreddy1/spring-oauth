@@ -52,17 +52,17 @@ public class SecurityFilter implements javax.ws.rs.container.ContainerRequestFil
             final MultivaluedMap<String, String> headers = requestContext.getHeaders();
           
             //Fetch authorization header
-            final List<String> authorization = headers.get(AUTHORIZATION_PROPERTY);
+//            final List<String> authorization = headers.get(AUTHORIZATION_PROPERTY);
             
 			final String role = (headers.get(ROLE) == null || headers
 					.get(ROLE).isEmpty()) ? null : headers.get(ROLE)
 					.get(0);
             //If no authorization information present; block access
-            if(authorization == null || authorization.isEmpty())
-            {
-                requestContext.abortWith(ACCESS_DENIED);
-                return;
-            }
+//            if(authorization == null || authorization.isEmpty())
+//            {
+//                requestContext.abortWith(ACCESS_DENIED);
+//                return;
+//            }
 			if(role == null || role.isEmpty())
 			{
 				requestContext.abortWith(ACCESS_DENIED);

@@ -40,7 +40,6 @@ public class ArticlesBaseResource {
 	@GET
 	@PermitAll
 	@ApiOperation(value = "To get all articles")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "Authorization", value = "Bearer edsjfh2233",  dataTypeClass = String.class, paramType = "header") })
 	public Response getAllArticles() {
 		List<Article> getAllArticles = dataService.getAtricles();
 		if(getAllArticles.isEmpty()) {
@@ -53,7 +52,6 @@ public class ArticlesBaseResource {
 	@POST
 	@PermitAll
 	@ApiOperation(value = "To create list of articles", consumes = "application/json")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "Authorization", value = "Bearer edsjfh2233", dataTypeClass = String.class, paramType = "header") })
 	public Response createArticles(@Valid @NotNull List<Article> articles ) {
 		 List<Article> storedarticles = articles.stream()
 				 .map(article->dataService.saveArticle(article))
@@ -66,7 +64,6 @@ public class ArticlesBaseResource {
 	@Path("/Titles/{title}")
 	@PermitAll
 	@ApiOperation(value = "To get specific article by Title", produces = "application/json")
-	@ApiImplicitParams({ @ApiImplicitParam(name = "Authorization", value = "Bearer edsjfh2233", dataTypeClass = String.class, paramType = "header") })
 	public Response getArticleByTitle(@NotNull @PathParam("title") String title) {
 		Article article = dataService.findAtricleByTitle(title);
 		if(article.getTitle()==null || article.getTitle().isEmpty()) {
@@ -82,7 +79,6 @@ public class ArticlesBaseResource {
 	@ApiOperation(value = "To update specific article", consumes = "application/json")
 	@RolesAllowed("ADMIN")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "Authorization", value = "Bearer edsjfh2233", dataTypeClass = String.class, paramType = "header"),
 		@ApiImplicitParam(name = "role", value = "ADMIN", dataTypeClass = String.class, paramType = "header") })
 	public Response updateArticle(@NotNull Article article) {
 		Article updatedArticle = dataService.updateAtricle(article);
@@ -99,7 +95,6 @@ public class ArticlesBaseResource {
     @ApiOperation(value = "To delete article by Title", produces = "application/json")
 	@RolesAllowed("ADMIN")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "Authorization", value = "Bearer edsjfh2233", dataTypeClass = String.class, paramType = "header"),
 		@ApiImplicitParam(name = "role", value = "ADMIN", dataTypeClass = String.class,paramType = "header") })
 	public Response deleteArticleByTitle(@NotNull @PathParam("title") String title) {
 		boolean isDeleted = dataService.deleteAtricleByTitle(title);
